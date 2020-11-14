@@ -1,5 +1,6 @@
 ﻿using Domain.Entity;
 using Microsoft.EntityFrameworkCore;
+using Repository.Config;
 
 namespace Repository.Context
 {
@@ -16,9 +17,9 @@ namespace Repository.Context
             modelBuilder.Ignore<Product>();
             modelBuilder.Ignore<Customer>();
 
-            //modelBuilder.ApplyConfiguration(new OrderConfiguration();
-            //modelBuilder.ApplyConfiguration(new ProductConfiguration());
-            //modelBuilder.ApplyConfiguration(new CustomerConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.ApplyConfiguration(new CustomerConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

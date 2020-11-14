@@ -1,8 +1,12 @@
+using Domain.IRepository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Repository.Context;
+using Repository.Repository;
 using System.IO;
 
 namespace Products
@@ -25,7 +29,15 @@ namespace Products
             services.AddControllers();
 
             // Database Connection
-            string connection = Configuration.GetSection("ConnectionStrings").GetSection("DefaultConnection").Value; 
+            string connection = Configuration.GetSection("ConnectionStrings").GetSection("DefaultConnection").Value;
+            services.AddDbContext<ProductContext>(option =>
+                option.UseLazyLoadingProxies().UseMySql(connection, migration =>
+                    migration.MigrationsAssembly("Repository")));
+
+            // Scope's
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
