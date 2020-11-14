@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Products.Utils
 {
-    public class Respose<TEntity>
+    public class Response<TEntity>
     {
         public TEntity Data { get; set; }
 
@@ -25,7 +25,7 @@ namespace Products.Utils
             }
         }
 
-        public Respose()
+        public Response()
         {
 
         }

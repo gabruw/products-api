@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Entity;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Domain.DTO
@@ -28,6 +29,17 @@ namespace Domain.DTO
         public CustomerInclude()
         {
 
+        }
+
+        public Customer ToCostumer()
+        {
+            Customer costumer = new Customer();
+            costumer.Cpf = Cpf;
+            costumer.Nome = Nome;
+            costumer.Senha = Senha;
+            costumer.DataNascimento = DataNascimento;
+
+            return costumer;
         }
     }
 }

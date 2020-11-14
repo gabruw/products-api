@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Domain.Entity;
+using System.ComponentModel.DataAnnotations;
 
 namespace Domain.DTO
 {
@@ -10,6 +11,18 @@ namespace Domain.DTO
         public CustomerEdit()
         {
 
+        }
+
+        public new Customer ToCostumer()
+        {
+            Customer costumer = new Customer();
+            costumer.Cpf = Cpf;
+            costumer.Nome = Nome;
+            costumer.Senha = Senha;
+            costumer.Codigo = Codigo;
+            costumer.DataNascimento = DataNascimento;
+
+            return costumer;
         }
     }
 }

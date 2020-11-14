@@ -14,22 +14,28 @@ namespace Repository.Repository
             ProductProvider = productProvider;
         }
 
-        public void Incluid(TEntity entity)
+        public TEntity Incluid(TEntity entity)
         {
             ProductProvider.Set<TEntity>().Add(entity);
             ProductProvider.SaveChanges();
+
+            return entity;
         }
 
-        public void Update(TEntity entity)
+        public TEntity Update(TEntity entity)
         {
             ProductProvider.Set<TEntity>().Update(entity);
             ProductProvider.SaveChanges();
+
+            return entity;
         }
 
-        public void Remove(TEntity entity)
+        public TEntity Remove(TEntity entity)
         {
             ProductProvider.Remove(entity);
             ProductProvider.SaveChanges();
+
+            return entity;
         }
 
         public IEnumerable<TEntity> GetAll()

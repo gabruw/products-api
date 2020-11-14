@@ -5,11 +5,11 @@ namespace Domain.IRepository
 {
     public interface IBaseRepository<TEntity> : IDisposable where TEntity : class
     {
-        void Incluid(TEntity entity);
+        TEntity Incluid(TEntity entity);
 
-        void Update(TEntity entity);
+        TEntity Update(TEntity entity);
 
-        void Remove(TEntity entity);
+        TEntity Remove(TEntity entity);
 
         IEnumerable<TEntity> GetAll();
 
