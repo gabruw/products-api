@@ -15,7 +15,7 @@ namespace Repository.Migrations
                     Codigo = table.Column<long>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Nome = table.Column<string>(type: "VARCHAR(255)", nullable: false),
-                    Cpf = table.Column<long>(type: "BIGINT(11)", nullable: false),
+                    Cpf = table.Column<string>(type: "VARCHAR(14)", nullable: false),
                     Senha = table.Column<string>(type: "VARCHAR(40)", nullable: false),
                     DataNascimento = table.Column<DateTime>(type: "DATETIME", nullable: false)
                 },

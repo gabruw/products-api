@@ -11,7 +11,7 @@ namespace Repository.Config
             builder.HasKey(c => c.Codigo);
             builder.HasMany(c => c.Customer_Orders).WithOne(o => o.Order_Customer).OnDelete(DeleteBehavior.SetNull);
             builder.HasIndex(c => c.Cpf).IsUnique();
-            builder.Property(c => c.Cpf).IsRequired().HasColumnType("BIGINT(11)");
+            builder.Property(c => c.Cpf).IsRequired().HasColumnType("VARCHAR(14)");
             builder.Property(c => c.Nome).IsRequired().HasColumnType("VARCHAR(255)");
             builder.Property(c => c.Senha).IsRequired().HasColumnType("VARCHAR(40)");
             builder.Property(c => c.DataNascimento).IsRequired().HasColumnType("DATETIME");

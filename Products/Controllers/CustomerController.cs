@@ -1,7 +1,9 @@
 ﻿using Domain.DTO;
 using Domain.Entity;
 using Domain.IRepository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Products.Services;
 using Products.Utils;
 
 namespace Products.Controllers
@@ -18,6 +20,7 @@ namespace Products.Controllers
             _customerRepository = customerRepository;
         }
 
+        [AllowAnonymous]
         [HttpPost("login")]
         public IActionResult Login([FromBody] Login login)
         {
@@ -35,10 +38,14 @@ namespace Products.Controllers
                 return BadRequest(response);
             }
 
+            customer.Senha = "";
             response.Data = customer;
-            return Ok(response);
+
+            string token = TokenService.GenerateToken(customer);
+            return Ok(new { token, response });
         }
 
+        [AllowAnonymous]
         [HttpPost("include")]
         public IActionResult Include([FromBody] CustomerInclude customerInclude)
         {
@@ -57,7 +64,8 @@ namespace Products.Controllers
             return Ok(response);
         }
 
-        [HttpPost("edit")]
+        [Authorize]
+        [HttpPut("edit")]
         public IActionResult Edit([FromBody] CustomerEdit customerEdit)
         {
             Response<Customer> response = new Response<Customer>();
@@ -67,8 +75,9 @@ namespace Products.Controllers
             return Ok(response);
         }
 
-        [HttpPost("remove")]
-        public IActionResult Remove([FromBody] long codigo)
+        [Authorize]
+        [HttpDelete("remove")]
+        public IActionResult Remove([FromQuery] long codigo)
         {
             Response<Customer> response = new Response<Customer>();
 

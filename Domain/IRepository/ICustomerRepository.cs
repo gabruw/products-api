@@ -4,6 +4,6 @@ namespace Domain.IRepository
 {
     public interface ICustomerRepository : IBaseRepository<Customer>
     {
-        Customer GetByCpf(long cpf);
+        Customer GetByCpf(string cpf);
     }
 }

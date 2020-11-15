@@ -9,7 +9,7 @@ using Repository.Context;
 namespace Repository.Migrations
 {
     [DbContext(typeof(ProductContext))]
-    [Migration("20201114152809_First")]
+    [Migration("20201114220801_First")]
     partial class First
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,8 +25,9 @@ namespace Repository.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    b.Property<long>("Cpf")
-                        .HasColumnType("BIGINT(11)");
+                    b.Property<string>("Cpf")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(14)");
 
                     b.Property<DateTime>("DataNascimento")
                         .HasColumnType("DATETIME");

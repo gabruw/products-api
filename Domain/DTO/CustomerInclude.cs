@@ -7,9 +7,9 @@ namespace Domain.DTO
     public class CustomerInclude
     {
         [Required(ErrorMessage = "O campo 'CPF' não pode ser nulo.")]
-        [MinLength(11, ErrorMessage = "O campo 'CPF' deve conter 11 caracters.")]
-        [MaxLength(11, ErrorMessage = "O campo 'CPF' deve conter 11 caracters.")]
-        public long Cpf { get; set; }
+        [MinLength(14, ErrorMessage = "O campo 'CPF' deve conter 14 caracters.")]
+        [MaxLength(14, ErrorMessage = "O campo 'CPF' deve conter 14 caracters.")]
+        public string Cpf { get; set; }
 
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "O campo 'Senha' não pode ser nulo.")]
@@ -33,13 +33,13 @@ namespace Domain.DTO
 
         public Customer ToCostumer()
         {
-            Customer costumer = new Customer();
-            costumer.Cpf = Cpf;
-            costumer.Nome = Nome;
-            costumer.Senha = Senha;
-            costumer.DataNascimento = DataNascimento;
+            Customer customer = new Customer();
+            customer.Cpf = Cpf;
+            customer.Nome = Nome;
+            customer.Senha = Senha;
+            customer.DataNascimento = DataNascimento;
 
-            return costumer;
+            return customer;
         }
     }
 }

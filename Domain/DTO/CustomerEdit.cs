@@ -15,14 +15,14 @@ namespace Domain.DTO
 
         public new Customer ToCostumer()
         {
-            Customer costumer = new Customer();
-            costumer.Cpf = Cpf;
-            costumer.Nome = Nome;
-            costumer.Senha = Senha;
-            costumer.Codigo = Codigo;
-            costumer.DataNascimento = DataNascimento;
+            Customer customer = new Customer();
+            customer.Cpf = Cpf;
+            customer.Nome = Nome;
+            customer.Senha = Senha;
+            customer.Codigo = Codigo;
+            customer.DataNascimento = DataNascimento;
 
-            return costumer;
+            return customer;
         }
     }
 }

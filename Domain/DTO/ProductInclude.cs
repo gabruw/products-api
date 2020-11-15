@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Domain.Entity;
+using System.ComponentModel.DataAnnotations;
 
 namespace Domain.DTO
 {
@@ -18,6 +19,16 @@ namespace Domain.DTO
         public ProductInclude()
         {
 
+        }
+
+        public Product ToProduct()
+        {
+            Product product = new Product();
+            product.Valor = Valor;
+            product.Descricao = Descricao;
+            product.CodigoBarras = CodigoBarras;
+       
+            return product;
         }
     }
 }

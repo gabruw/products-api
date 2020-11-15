@@ -12,7 +12,7 @@ namespace Repository.Repository
             
         }
 
-        public Customer GetByCpf(long cpf)
+        public Customer GetByCpf(string cpf)
         {
             return ProductProvider.Set<Customer>().SingleOrDefault(c => c.Cpf == cpf);
         }
