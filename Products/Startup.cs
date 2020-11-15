@@ -10,7 +10,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Repository.Context;
 using Repository.Repository;
-using System;
 using System.IO;
 using System.Text;
 
@@ -35,25 +34,25 @@ namespace Products
             services.AddControllers();
 
             // Inject JWT Settings
-            services.AddOptions();
-            services.Configure<JWT>(Configuration.GetSection("JWT"));
+            string secret = Configuration.GetSection("JWT").GetSection("Secret").Value;
+            JWT.GetInstance().Secret = secret;
 
             // JWT Settings
-            var key = Encoding.ASCII.GetBytes(Configuration.GetSection("JWT").GetSection("Secret").Value);
+            var key = Encoding.ASCII.GetBytes(secret);
             services.AddAuthentication(x =>
             {
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(x =>
             {
                 x.RequireHttpsMetadata = false;
                 x.SaveToken = true;
                 x.TokenValidationParameters = new TokenValidationParameters()
                 {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = false,
                     ValidateAudience = false,
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key)
                 };
             });
 
@@ -80,11 +79,15 @@ namespace Products
 
             app.UseRouting();
 
-            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-
-            app.UseAuthorization();
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+            );
 
             app.UseAuthentication();
+            app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {

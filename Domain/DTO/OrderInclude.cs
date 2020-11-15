@@ -13,10 +13,7 @@ namespace Domain.DTO
         [Required(ErrorMessage = "O campo 'Data de Nascimento' não pode ser nulo.")]
         public DateTime Data { get; set; }
 
-        [Required(ErrorMessage = "O valor 'CPF' não pode ser nulo.")]
-        [MinLength(11, ErrorMessage = "O valor 'CPF' deve conter 11 caracters.")]
-        [MaxLength(11, ErrorMessage = "O valor 'CPF' deve conter 11 caracters.")]
-        public long Cpf { get; set; }
+        public Customer Customer { get; set; }
 
         [CollectionLength(1, ErrorMessage = "Deve haver ao menos 1 produto para que o pedido seja efetuado.")]
         public  ICollection<Product> Products { get; set; }
@@ -24,6 +21,16 @@ namespace Domain.DTO
         public OrderInclude()
         {
 
+        }
+
+        public Order ToOrder()
+        {
+            Order order = new Order();
+            order.Data = Data;
+            order.Order_Customer = Customer;
+            order.Order_Products = Products;
+
+            return order;
         }
     }
 }

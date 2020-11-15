@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Domain.Entity;
+using System.ComponentModel.DataAnnotations;
 
 namespace Domain.DTO
 {
@@ -10,6 +11,17 @@ namespace Domain.DTO
         public OrderEdit()
         {
 
+        }
+
+        public new Order ToOrder()
+        {
+            Order order = new Order();
+            order.Data = Data;
+            order.Codigo = Codigo;
+            order.Order_Customer = Customer;
+            order.Order_Products = Products;
+
+            return order;
         }
     }
 }
