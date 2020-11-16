@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Products.Services;
 using Products.Utils;
+using System;
 
 namespace Products.Controllers
 {
@@ -20,8 +21,9 @@ namespace Products.Controllers
             _customerRepository = customerRepository;
         }
 
+        [HttpPost]
         [AllowAnonymous]
-        [HttpPost("login")]
+        [Route("login")]
         public IActionResult Login([FromBody] Login login)
         {
             Response<Customer> response = new Response<Customer>();
@@ -38,18 +40,32 @@ namespace Products.Controllers
                 return BadRequest(response);
             }
 
-            customer.Senha = "";
+            customer.Senha = null;
             response.Data = customer;
 
             string token = TokenService.GenerateToken(customer);
             return Ok(new { token, response });
         }
 
+        [HttpPost]
         [AllowAnonymous]
-        [HttpPost("include")]
+        [Route("include")]
         public IActionResult Include([FromBody] CustomerInclude customerInclude)
         {
             Response<Customer> response = new Response<Customer>();
+
+            DateTime today = DateTime.Today;
+            int age = today.Year - customerInclude.DataNascimento.Year;
+            if (customerInclude.DataNascimento.Date > today.AddYears(-age))
+            {
+                age--;
+            }
+
+            if (age < 18)
+            {
+                response.Errors.Add("A idade informada é menor que a permitida.");
+                return BadRequest(response);
+            }
 
             Customer customer = _customerRepository.GetByCpf(customerInclude.Cpf);
             if (customer != null)
@@ -59,13 +75,17 @@ namespace Products.Controllers
             }
 
             customer = _customerRepository.Incluid(customerInclude.ToCostumer());
-            response.Data = customer;
+            customer.Senha = null;
 
-            return Ok(response);
+            response.Data = customer;
+            string token = TokenService.GenerateToken(customer);
+
+            return Ok(new { token, response });
         }
 
+        [HttpPut]
         [Authorize]
-        [HttpPut("edit")]
+        [Route("edit")]
         public IActionResult Edit([FromBody] CustomerEdit customerEdit)
         {
             Response<Customer> response = new Response<Customer>();
@@ -76,7 +96,8 @@ namespace Products.Controllers
         }
 
         [Authorize]
-        [HttpDelete("remove")]
+        [HttpDelete]
+        [Route("remove")]
         public IActionResult Remove([FromQuery] long codigo)
         {
             Response<Customer> response = new Response<Customer>();

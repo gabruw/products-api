@@ -22,7 +22,8 @@ namespace Products.Controllers
         }
 
 
-        [HttpGet("all")]
+        [HttpGet]
+        [Route("all")]
         public IActionResult All()
         {
             Response<IEnumerable<Product>> response = new Response<IEnumerable<Product>>();
@@ -33,7 +34,8 @@ namespace Products.Controllers
             return Ok(response);
         }
 
-        [HttpPost("include")]
+        [HttpPost]
+        [Route("include")]
         public IActionResult Include([FromBody] ProductInclude productInclude)
         {
             Response<Product> response = new Response<Product>();
@@ -51,7 +53,8 @@ namespace Products.Controllers
             return Ok(response);
         }
 
-        [HttpPut("edit")]
+        [HttpPut]
+        [Route("edit")]
         public IActionResult Edit([FromBody] ProductEdit productEdit)
         {
             Response<Product> response = new Response<Product>();
@@ -61,7 +64,8 @@ namespace Products.Controllers
             return Ok(response);
         }
 
-        [HttpDelete("remove")]
+        [HttpDelete]
+        [Route("remove")]
         public IActionResult Remove([FromQuery] long codigo)
         {
             Response<Product> response = new Response<Product>();
