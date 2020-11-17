@@ -44,7 +44,9 @@ namespace Products.Controllers
             response.Data = customer;
 
             string token = TokenService.GenerateToken(customer);
-            return Ok(new { token, response });
+            response.Token = token;
+
+            return Ok(response);
         }
 
         [HttpPost]
@@ -79,8 +81,9 @@ namespace Products.Controllers
 
             response.Data = customer;
             string token = TokenService.GenerateToken(customer);
+            response.Token = token;
 
-            return Ok(new { token, response });
+            return Ok(response);
         }
 
         [HttpPut]
@@ -90,6 +93,7 @@ namespace Products.Controllers
         {
             Response<Customer> response = new Response<Customer>();
             Customer customer = _customerRepository.Update(customerEdit.ToCostumer());
+            customer.Senha = null;
 
             response.Data = customer;
             return Ok(response);

@@ -1,4 +1,5 @@
 ﻿using Domain.IRepository;
+using Microsoft.EntityFrameworkCore;
 using Repository.Context;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,7 +46,10 @@ namespace Repository.Repository
 
         public TEntity GetbyId(long Id)
         {
-            return ProductProvider.Set<TEntity>().Find(Id);
+            TEntity entity = ProductProvider.Set<TEntity>().Find(Id);
+            ProductProvider.Entry(entity).State = EntityState.Detached;
+
+            return entity;
         }
 
         public void Dispose()

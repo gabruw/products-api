@@ -58,9 +58,10 @@ namespace Products.Controllers
         public IActionResult Edit([FromBody] ProductEdit productEdit)
         {
             Response<Product> response = new Response<Product>();
-            Product product = _productRepository.Update(productEdit.ToProduct());
 
+            Product product = _productRepository.Update(productEdit.ToProduct());
             response.Data = product;
+
             return Ok(response);
         }
 

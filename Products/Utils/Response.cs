@@ -6,6 +6,7 @@ namespace Products.Utils
     public class Response<TEntity>
     {
         public TEntity Data { get; set; }
+        public string Token { get; set; }
 
         private List<string> _errors;
         public List<string> Errors

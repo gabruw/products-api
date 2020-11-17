@@ -21,7 +21,7 @@ namespace Products.Services
                     new Claim(ClaimTypes.Role, "User"),
                     new Claim(ClaimTypes.SerialNumber, customer.Cpf),
                 }),
-                Expires = DateTime.UtcNow.AddHours(2),
+                Expires = DateTime.UtcNow.AddDays(2),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
