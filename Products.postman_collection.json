@@ -1,0 +1,339 @@
+{
+	"info": {
+		"_postman_id": "3be912c4-f49a-483f-b2bf-571289c2f530",
+		"name": "Products",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cpf\": \"123.456.789-11\",\r\n    \"senha\": \"12345678910\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44321/customer/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44321",
+					"path": [
+						"customer",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Include Cliente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cpf\": \"123.456.789-11\",\r\n    \"senha\": \"12345678910\",\r\n    \"nome\": \"José\",\r\n    \"DataNascimento\": \"1992-10-10\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44321/customer/include",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44321",
+					"path": [
+						"customer",
+						"include"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Cliente",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer <token here>",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"codigo\": 2,\r\n    \"cpf\": \"123.456.789-11\",\r\n    \"senha\": \"12345678910\",\r\n    \"nome\": \"Padilha\",\r\n    \"DataNascimento\": \"1992-10-10\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44321/customer/edit",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44321",
+					"path": [
+						"customer",
+						"edit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Cliente",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer <token here>",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44321/customer/remove?codigo=1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44321",
+					"path": [
+						"customer",
+						"remove"
+					],
+					"query": [
+						{
+							"key": "codigo",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Include Produto",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer <token here>",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"codigoBarras\": \"fkf313413i232030j424g208gj0g40\",\r\n    \"descricao\": \"Teste\",\r\n    \"valor\": 10.20\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44321/product/include",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44321",
+					"path": [
+						"product",
+						"include"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Produto",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer <token here>",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"codigo\": 2,\r\n    \"cpf\": \"123.456.789-11\",\r\n    \"senha\": \"12345678910\",\r\n    \"nome\": \"Padilha\",\r\n    \"DataNascimento\": \"1992-10-10\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44321/product/edit",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44321",
+					"path": [
+						"product",
+						"edit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Produto",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer <token here>",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44321/customer/remove?codigo=1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44321",
+					"path": [
+						"customer",
+						"remove"
+					],
+					"query": [
+						{
+							"key": "codigo",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Include Pedido",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer <token here>",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"data\": \"1993-05-08\",\r\n    \"customer\": {\r\n        \"codigo\": 2,\r\n        \"cpf\": \"123.456.789-11\",\r\n        \"senha\": \"12345678910\",\r\n        \"nome\": \"Padilha\",\r\n        \"DataNascimento\": \"1992-10-10\"\r\n    },\r\n    \"products\": [\r\n        {\r\n            \"codigoBarras\": \"fkf313413i232030j424g208gj0g40\",\r\n            \"descricao\": \"Teste\",\r\n            \"valor\": 10.20\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44321/order/include",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44321",
+					"path": [
+						"order",
+						"include"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Pedido",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer <token here>",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"codigo\": 1,\r\n    \"data\": \"1993-05-08\",\r\n    \"customer\": {\r\n        \"codigo\": 2,\r\n        \"cpf\": \"123.456.789-11\",\r\n        \"senha\": \"12345678910\",\r\n        \"nome\": \"Padilha\",\r\n        \"DataNascimento\": \"1992-10-10\"\r\n    },\r\n    \"products\": [\r\n        {\r\n            \"codigoBarras\": \"fkf313413i232030j424g208gj0g40\",\r\n            \"descricao\": \"Teste\",\r\n            \"valor\": 10.20\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44321/order/edit",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44321",
+					"path": [
+						"order",
+						"edit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Pedido",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer <token here>",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44321/customer/order?codigo=1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44321",
+					"path": [
+						"customer",
+						"order"
+					],
+					"query": [
+						{
+							"key": "codigo",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
