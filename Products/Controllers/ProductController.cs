@@ -21,7 +21,6 @@ namespace Products.Controllers
             _productRepository = productRepository;
         }
 
-
         [HttpGet]
         [Route("all")]
         public IActionResult All()

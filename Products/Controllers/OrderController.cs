@@ -23,12 +23,12 @@ namespace Products.Controllers
 
 
         [HttpGet]
-        [Route("all")]
-        public IActionResult All()
+        [Route("all-customer")]
+        public IActionResult AllOrdersByCustomer([FromQuery] string cpf)
         {
             Response<IEnumerable<Order>> response = new Response<IEnumerable<Order>>();
 
-            IEnumerable<Order> orders = _orderRepository.GetAll();
+            IEnumerable<Order> orders = _orderRepository.GetAllByCustomer(cpf);
             response.Data = orders;
 
             return Ok(response);
