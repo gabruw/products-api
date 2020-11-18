@@ -38,9 +38,9 @@ namespace Products.Controllers
         [Route("include")]
         public IActionResult Include([FromBody] OrderInclude orderInclude)
         {
-            Response<Order> response = new Response<Order>();
+            Response<Order> response = new Response<Order>()
 
-            Order order = _orderRepository.Incluid(orderInclude.ToOrder());
+            Order order = _orderRepository.IncludeOrder(orderInclude.ToOrder());
             response.Data = order;
 
             return Ok(response);
@@ -52,7 +52,7 @@ namespace Products.Controllers
         {
             Response<Order> response = new Response<Order>();
 
-            Order order = _orderRepository.Update(orderEdit.ToOrder());
+            Order order = _orderRepository.UpdateOrder(orderEdit.ToOrder());
             response.Data = order;
 
             return Ok(response);

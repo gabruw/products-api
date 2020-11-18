@@ -17,5 +17,27 @@ namespace Repository.Repository
         {
             return ProductProvider.Set<Order>().Where(o => o.Order_Customer.Cpf == cpf);
         }
+
+        public Order IncludeOrder(Order order)
+        {
+            foreach (Product product in order.Order_Products)
+            {
+                ProductProvider.Attach<Product>(product);
+            }
+
+            ProductProvider.Order.Add(order);
+            ProductProvider.SaveChanges();
+        }
+
+        public Order UpdateOrder(Order order)
+        {
+            foreach (Product product in order.Order_Products)
+            {
+                ProductProvider.Attach<Product>(product);
+            }
+
+            ProductProvider.Order.Update(order);
+            ProductProvider.SaveChanges();
+        }
     }
 }

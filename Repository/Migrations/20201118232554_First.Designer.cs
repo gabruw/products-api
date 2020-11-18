@@ -9,7 +9,7 @@ using Repository.Context;
 namespace Repository.Migrations
 {
     [DbContext(typeof(ProductContext))]
-    [Migration("20201114220801_First")]
+    [Migration("20201118232554_First")]
     partial class First
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
