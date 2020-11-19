@@ -1,4 +1,4 @@
-# Binary API
+# Products API
 
 ## Objetivo
 API em ASP .NET Core 3.1 que tem como intuito de gerênciar clientes, produtos e pedidos.
